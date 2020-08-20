@@ -10,8 +10,9 @@ function App() {
   }
 
 //set updated name value in to heading text
-  function handelClick() {
+  function handelClick(event) {
     setHeadingText(name);
+    event.preventDefault();
   }
 
   const defaultButtonStyle = {
@@ -38,11 +39,13 @@ function restoreStyle() {
   return (
     <div className="container">
       <h1>Hello {headingText}!</h1>
-      <input type="text" placeholder="What's your name?" onChange = {handleChange}/>
-      <button style={style} 
-          onClick={handelClick} 
-          onMouseOver={changeStyle} 
-          onMouseOut={restoreStyle}>Submit</button>
+      <from onClick={handelClick}>
+        <input type="text" placeholder="What's your name?" onChange = {handleChange} value = {name}/>
+        <button style={style} 
+            onMouseOver={changeStyle} 
+            onMouseOut={restoreStyle}
+            type="submit">Submit</button>
+      </from>
     </div>
   );
 }
