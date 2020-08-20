@@ -2,10 +2,16 @@ import React, { useState } from "react";
 
 function App() {
 
-  const [headingText,setHeadingText] = useState("Hello");
+  const [name,setName] = useState("");
+  const [headingText,setHeadingText] = useState(name);
+  //when use type automatically name get updated with new value
+  function handleChange(event) {
+    setName(event.target.value);
+  }
 
+//set updated name value in to heading text
   function handelClick() {
-    setHeadingText("Submitted");
+    setHeadingText(name);
   }
 
   const defaultButtonStyle = {
@@ -31,9 +37,12 @@ function restoreStyle() {
 
   return (
     <div className="container">
-      <h1>{headingText}</h1>
-      <input type="text" placeholder="What's your name?" />
-      <button style={style} onClick={handelClick} onMouseOver={changeStyle} onMouseOut={restoreStyle}>Submit</button>
+      <h1>Hello {headingText}!</h1>
+      <input type="text" placeholder="What's your name?" onChange = {handleChange}/>
+      <button style={style} 
+          onClick={handelClick} 
+          onMouseOver={changeStyle} 
+          onMouseOut={restoreStyle}>Submit</button>
     </div>
   );
 }
